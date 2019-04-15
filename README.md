@@ -23,7 +23,7 @@ docker run -v $(pwd):/site t-richards/hugo hugo --gc && vnu --skip-non-html publ
 ## Building this image
 
 ```
-docker build -t t-richards/hugo .
+docker build -t trichards/hugo .
 ```
 
 [hugo]: https://github.com/gohugoio/hugo
