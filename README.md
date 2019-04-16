@@ -18,7 +18,7 @@ vnu --skip-non-html public/
 ## Example run
 
 ```bash
-docker run -v $(pwd):/site t-richards/hugo hugo --gc && vnu --skip-non-html public/
+docker run -v $(pwd):/site trichards/hugo hugo --gc && vnu --skip-non-html public/
 ```
 
 ## Building this image
