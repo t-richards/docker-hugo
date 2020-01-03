@@ -1,5 +1,5 @@
 # Build image
-FROM golang:1.12-alpine as builder
+FROM golang:1.13-alpine as builder
 
 ENV HUGO_VERSION 0.59.1
 
@@ -11,10 +11,10 @@ RUN apk add --update --no-cache alpine-sdk git \
  && go install -v -ldflags '-s -w' --tags extended
 
 # Runtime image
-FROM alpine:3.8
+FROM alpine:3.11
 
 # Versions
-ENV HUGO_VERSION 0.59.1
+ENV HUGO_VERSION 0.62.1
 ENV VNU_VERSION 18.11.5
 
 # Add hugo, wrapper script for v.Nu
