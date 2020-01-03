@@ -1,7 +1,7 @@
 # Build image
 FROM golang:1.13-alpine as builder
 
-ENV HUGO_VERSION 0.59.1
+ENV HUGO_VERSION 0.62.1
 
 RUN apk add --update --no-cache alpine-sdk git \
  && wget -O /tmp/hugo.tar.gz \
