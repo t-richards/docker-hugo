@@ -25,7 +25,7 @@ COPY vnu /usr/local/bin/vnu
 # 1. Download and install v.Nu
 # 2. Show app versions
 # 3. List remaining installed packages
-RUN apk add --update --no-cache ca-certificates libc6-compat libstdc++ openjdk8-jre-base \
+RUN apk add --update --no-cache ca-certificates git libc6-compat libstdc++ openjdk8-jre-base \
  && wget -O /tmp/validator.zip \
     https://github.com/validator/validator/releases/download/${VNU_VERSION}/vnu.jar_${VNU_VERSION}.zip \
  && unzip /tmp/validator.zip \
