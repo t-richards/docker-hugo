@@ -24,9 +24,8 @@ COPY vnu /usr/local/bin/vnu
 # 0. Install system deps
 # 1. Download and install v.Nu
 # 2. Show app versions
-# 3. Remove unnecessary packages
-# 4. List remaining installed packages
-RUN apk add --update --no-cache git openjdk8-jre-base \
+# 3. List remaining installed packages
+RUN apk add --update --no-cache ca-certificates libc6-compat libstdc++ openjdk8-jre-base \
  && wget -O /tmp/validator.zip \
     https://github.com/validator/validator/releases/download/${VNU_VERSION}/vnu.jar_${VNU_VERSION}.zip \
  && unzip /tmp/validator.zip \
@@ -35,7 +34,6 @@ RUN apk add --update --no-cache git openjdk8-jre-base \
  && vnu --version \
  && hugo version \
  && mkdir -p /site \
- && apk del libc-utils \
  && apk info -vv | sort
 
 WORKDIR /site
