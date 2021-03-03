@@ -1,7 +1,7 @@
 # docker-hugo
 
 [![Docker Automated build](https://img.shields.io/docker/automated/trichards/hugo.svg)](https://hub.docker.com/r/trichards/hugo/)
-[![Docker Image Size](https://images.microbadger.com/badges/image/trichards/hugo.svg)](https://microbadger.com/images/trichards/hugo)
+![Docker Image Size](https://img.shields.io/docker/image-size/trichards/hugo)
 
 A docker image with [Hugo][hugo] and the [The Nu Html Checker][vnu].
 

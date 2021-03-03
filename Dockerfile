@@ -11,7 +11,7 @@ RUN set -eux; \
 	sha256='5091d57220e2325ba1a24fe50c608ee3ea2317911f00d4f3e97c242c492cfb43'; \
 	\
 	wget -O hugo.tar.gz "$url"; \
-	echo "$sha256  hugo.tar.gz" | sha256sum -c; \
+	echo "$sha256  hugo.tar.gz" | sha256sum -c -; \
 	tar xvf hugo.tar.gz; \
 	cd hugo-0.81.0; \
 	go install -v -ldflags '-s -w' --tags extended
@@ -40,7 +40,7 @@ RUN set -eux; \
 		openjdk8-jre-base \
 	; \
 	\
-	url="https://github.com/validator/validator/releases/download/20.3.16/vnu.jar_20.3.16.zip"; \
+	url='https://github.com/validator/validator/releases/download/20.3.16/vnu.jar_20.3.16.zip'; \
 	sha256='1d5b3f0ded0a1e6f9d26a0be5c051a9590a11c8aab2e12d208120a3063e7bdcd'; \
 	\
 	wget -O validator.zip "$url"; \
