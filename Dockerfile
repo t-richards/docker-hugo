@@ -1,26 +1,32 @@
 # Builder image
 FROM golang:1.16-alpine as builder
 
+ENV CGO_CPPFLAGS="-D_FORTIFY_SOURCE=2"
+ENV CGO_CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fno-plt"
+ENV CGO_CXXFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fno-plt"
+ENV CGO_LDFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
+ENV GOFLAGS="-buildmode=pie -trimpath -mod=readonly -modcacherw"
+
 RUN set -eux; \
 	apk add --no-cache --update \
 		alpine-sdk \
 		git \
 	; \
 	\
-	url='https://github.com/gohugoio/hugo/archive/v0.82.0.tar.gz'; \
-	sha256='f156c31034f013b11ff19aec09ab4d47fd8689befaa6f58222b48ed970722b4b'; \
+	url='https://github.com/gohugoio/hugo/archive/v0.83.0.tar.gz'; \
+	sha256='c22bbbf4f3e12bced1b6b73ed1b31f45b9123c3d37ccacf2d899c06aa07550a9'; \
 	\
 	wget -O hugo.tar.gz "$url"; \
 	echo "$sha256  hugo.tar.gz" | sha256sum -c -; \
 	tar xvf hugo.tar.gz; \
-	cd hugo-0.82.0; \
+	cd hugo-0.83.0; \
 	go install -v -ldflags '-s -w' --tags extended
 
 # Runtime image
 FROM alpine:3.13
 
 # Versions
-ENV HUGO_VERSION 0.82.0
+ENV HUGO_VERSION 0.83.0
 ENV VNU_VERSION 20.3.16
 
 # Add hugo, wrapper script for v.Nu
