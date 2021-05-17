@@ -13,20 +13,20 @@ RUN set -eux; \
 		git \
 	; \
 	\
-	url='https://github.com/gohugoio/hugo/archive/v0.83.0.tar.gz'; \
-	sha256='c22bbbf4f3e12bced1b6b73ed1b31f45b9123c3d37ccacf2d899c06aa07550a9'; \
+	url='https://github.com/gohugoio/hugo/archive/v0.83.1.tar.gz'; \
+	sha256='2abc273ffb79576c9347c80d443154db26be9ae15b6ae66f9b75056c3a285157'; \
 	\
 	wget -O hugo.tar.gz "$url"; \
 	echo "$sha256  hugo.tar.gz" | sha256sum -c -; \
 	tar xvf hugo.tar.gz; \
-	cd hugo-0.83.0; \
+	cd hugo-0.83.1; \
 	go install -v -ldflags '-s -w' --tags extended
 
 # Runtime image
 FROM alpine:3.13
 
 # Versions
-ENV HUGO_VERSION 0.83.0
+ENV HUGO_VERSION 0.83.1
 ENV VNU_VERSION 20.3.16
 
 # Add hugo, wrapper script for v.Nu
