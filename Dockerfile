@@ -1,9 +1,13 @@
 # Builder image
 FROM golang:1.16-alpine as builder
 
+ENV CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fno-plt -fexceptions \
+        -Wp,-D_FORTIFY_SOURCE=2 \
+        -Wformat -Werror=format-security \
+        -fstack-clash-protection -fcf-protection"
 ENV CGO_CPPFLAGS="-D_FORTIFY_SOURCE=2"
-ENV CGO_CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fno-plt"
-ENV CGO_CXXFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fno-plt"
+ENV CGO_CFLAGS="$CFLAGS"
+ENV CGO_CXXFLAGS="$CFLAGS"
 ENV CGO_LDFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
 ENV GOFLAGS="-buildmode=pie -trimpath -mod=readonly -modcacherw"
 
@@ -13,20 +17,20 @@ RUN set -eux; \
 		git \
 	; \
 	\
-	url='https://github.com/gohugoio/hugo/archive/v0.83.1.tar.gz'; \
-	sha256='2abc273ffb79576c9347c80d443154db26be9ae15b6ae66f9b75056c3a285157'; \
+	url='https://github.com/gohugoio/hugo/archive/v0.85.0.tar.gz'; \
+	sha256='9f1c983fe649f0d602481c848ebf863c9d3b3bc9c0e6a237c35e96e33a1b5d24'; \
 	\
 	wget -O hugo.tar.gz "$url"; \
 	echo "$sha256  hugo.tar.gz" | sha256sum -c -; \
 	tar xvf hugo.tar.gz; \
-	cd hugo-0.83.1; \
+	cd hugo-0.85.0; \
 	go install -v -ldflags '-s -w' --tags extended
 
 # Runtime image
 FROM alpine:3.13
 
 # Versions
-ENV HUGO_VERSION 0.83.1
+ENV HUGO_VERSION 0.85.0
 ENV VNU_VERSION 20.3.16
 
 # Add hugo, wrapper script for v.Nu
