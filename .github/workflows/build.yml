@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: trichards/hugo
+  IMAGE_NAME: t-richards/hugo
 
 jobs:
   build-and-push-image:
