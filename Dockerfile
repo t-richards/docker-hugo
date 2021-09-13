@@ -1,5 +1,5 @@
 # Builder image
-FROM golang:1.17.0-alpine as builder
+FROM golang:1.17.1-alpine as builder
 
 ENV CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fno-plt -fexceptions \
         -Wp,-D_FORTIFY_SOURCE=2 \
