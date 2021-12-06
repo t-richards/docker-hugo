@@ -30,7 +30,7 @@ jobs:
 
       - name: Extract metadata (tags, labels)
         id: meta
-        uses: docker/metadata-action@v3.6.0
+        uses: docker/metadata-action@v3.6.2
         with:
           images: ghcr.io/t-richards/hugo
 
