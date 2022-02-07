@@ -41,6 +41,8 @@ RUN set -eux; \
 	apk add --no-cache --update \
 		ca-certificates \
 		git \
+		libc6-compat \
+		libstdc++ \
 		npm \
 		openjdk17-jre-headless \
 	; \
