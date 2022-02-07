@@ -1,5 +1,5 @@
 # Builder image
-FROM golang:1.17.5-alpine as builder
+FROM golang:1.17.6-alpine as builder
 
 ENV CFLAGS="-O2 -pipe -fno-plt -fexceptions \
         -Wp,-D_FORTIFY_SOURCE=2 \
@@ -17,20 +17,20 @@ RUN set -eux; \
 		git \
 	; \
 	\
-	url='https://github.com/gohugoio/hugo/archive/v0.90.1.tar.gz'; \
-	sha256='456789091bfe30dd3f69b63ac627d6e08ae973326294cc6517be8ed70353af35'; \
+	url='https://github.com/gohugoio/hugo/archive/v0.92.1.tar.gz'; \
+	sha256='ac698634f62f397ea0df5bfcbb4ba523743aa5a0f52c06aef9b261224d173883'; \
 	\
 	wget -O hugo.tar.gz "$url"; \
 	echo "$sha256  hugo.tar.gz" | sha256sum -c -; \
 	tar xvf hugo.tar.gz; \
-	cd hugo-0.90.1; \
+	cd hugo-0.92.1; \
 	go install -v -ldflags '-s -w' --tags extended
 
 # Runtime image
 FROM alpine:3.15
 
 # Versions
-ENV HUGO_VERSION 0.90.1
+ENV HUGO_VERSION 0.92.1
 ENV VNU_VERSION 20.3.16
 
 # Add hugo, wrapper script for v.Nu
