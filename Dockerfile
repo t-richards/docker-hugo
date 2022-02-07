@@ -31,35 +31,22 @@ FROM alpine:3.15
 
 # Versions
 ENV HUGO_VERSION 0.92.1
-ENV VNU_VERSION 20.3.16
 
-# Add hugo, wrapper script for v.Nu
+# Add hugo
 COPY --from=builder /go/bin/hugo /usr/local/bin/hugo
-COPY vnu /usr/local/bin/vnu
 
 # 0. Install system deps
-# 1. Download and install v.Nu
-# 2. Show app versions
-# 3. List remaining installed packages
+# 1. List remaining installed packages
 RUN set -eux; \
 	apk add --no-cache --update \
 		ca-certificates \
 		git \
-		libc6-compat \
-		libstdc++ \
-		openjdk8-jre-base \
+		npm \
+		openjdk17-jre-headless \
 	; \
-	\
-	url='https://github.com/validator/validator/releases/download/20.3.16/vnu.jar_20.3.16.zip'; \
-	sha256='1d5b3f0ded0a1e6f9d26a0be5c051a9590a11c8aab2e12d208120a3063e7bdcd'; \
-	\
-	wget -O validator.zip "$url"; \
-	echo "$sha256  validator.zip" | sha256sum -c -; \
-	unzip -j validator.zip dist/vnu.jar -d /usr/local/lib; \
-	rm -f validator.zip; \
-	\
-	vnu --version; \
 	hugo version; \
+	java --version; \
+	npm version; \
 	mkdir -p /site; \
 	apk info -vv | sort
 
