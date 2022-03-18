@@ -1,5 +1,5 @@
 # Builder image
-FROM golang:1.17.8-alpine as builder
+FROM golang:1.18-alpine as builder
 
 ENV CFLAGS="-O2 -pipe -fno-plt -fexceptions \
         -Wp,-D_FORTIFY_SOURCE=2 \
@@ -17,20 +17,20 @@ RUN set -eux; \
 		git \
 	; \
 	\
-	url='https://github.com/gohugoio/hugo/archive/v0.94.2.tar.gz'; \
-	sha256='315bc0d22977e84ba25125b1d23333648e36194a46a4d6ae4f4c6c683dc8979c'; \
+	url='https://github.com/gohugoio/hugo/archive/v0.95.0.tar.gz'; \
+	sha256='a3d80e3614c8755b664469b3dd5e4503efdad62b10b78653bfbf25363ce09b5a'; \
 	\
 	wget -O hugo.tar.gz "$url"; \
 	echo "$sha256  hugo.tar.gz" | sha256sum -c -; \
 	tar xvf hugo.tar.gz; \
-	cd hugo-0.94.2; \
+	cd hugo-0.95.0; \
 	go install -v -ldflags '-s -w' --tags extended
 
 # Runtime image
 FROM alpine:3.15
 
 # Versions
-ENV HUGO_VERSION 0.94.2
+ENV HUGO_VERSION 0.95.0
 
 # Add hugo
 COPY --from=builder /go/bin/hugo /usr/local/bin/hugo
