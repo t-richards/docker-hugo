@@ -17,20 +17,20 @@ RUN set -eux; \
 		git \
 	; \
 	\
-	url='https://github.com/gohugoio/hugo/archive/v0.95.0.tar.gz'; \
-	sha256='a3d80e3614c8755b664469b3dd5e4503efdad62b10b78653bfbf25363ce09b5a'; \
+	url='https://github.com/gohugoio/hugo/archive/v0.100.0.tar.gz'; \
+	sha256='790c4f218e6380f31a0d5c10bacc7e1f7b1533ccba88ef526f764d413325cff1'; \
 	\
 	wget -O hugo.tar.gz "$url"; \
 	echo "$sha256  hugo.tar.gz" | sha256sum -c -; \
 	tar xvf hugo.tar.gz; \
-	cd hugo-0.95.0; \
+	cd hugo-0.100.0; \
 	go install -v -ldflags '-s -w' --tags extended
 
 # Runtime image
 FROM alpine:3.15
 
 # Versions
-ENV HUGO_VERSION 0.95.0
+ENV HUGO_VERSION 0.100.0
 
 # Add hugo
 COPY --from=builder /go/bin/hugo /usr/local/bin/hugo
