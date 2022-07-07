@@ -17,26 +17,25 @@ RUN set -eux; \
 		git \
 	; \
 	\
-	url='https://github.com/gohugoio/hugo/archive/v0.100.0.tar.gz'; \
-	sha256='790c4f218e6380f31a0d5c10bacc7e1f7b1533ccba88ef526f764d413325cff1'; \
+	url='https://github.com/gohugoio/hugo/archive/v0.101.0.tar.gz'; \
+	sha256='ce5e2c37d9980428cfbfb22cabedc29aebe8f1142ce261777d0435f9f2d6d1cb'; \
 	\
 	wget -O hugo.tar.gz "$url"; \
 	echo "$sha256  hugo.tar.gz" | sha256sum -c -; \
 	tar xvf hugo.tar.gz; \
-	cd hugo-0.100.0; \
+	cd hugo-0.101.0; \
 	go install -v -ldflags '-s -w' --tags extended
 
 # Runtime image
 FROM alpine:3.16
 
 # Versions
-ENV HUGO_VERSION 0.100.0
+ENV HUGO_VERSION 0.101.0
 
 # Add hugo
 COPY --from=builder /go/bin/hugo /usr/local/bin/hugo
 
 # 0. Install system deps
-# 1. List remaining installed packages
 RUN set -eux; \
 	apk add --no-cache --update \
 		ca-certificates \
@@ -46,10 +45,12 @@ RUN set -eux; \
 		npm \
 		openjdk17-jre-headless \
 	; \
+# 1. Show versions
 	hugo version; \
 	java --version; \
 	npm version; \
 	mkdir -p /site; \
+# 2. List remaining installed packages
 	apk info -vv | sort
 
 WORKDIR /site
