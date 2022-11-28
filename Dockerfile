@@ -27,7 +27,7 @@ RUN set -eux; \
 	go install -v -ldflags '-s -w' --tags extended
 
 # Runtime image
-FROM alpine:3.16
+FROM alpine:3.17
 
 # Versions
 ENV HUGO_VERSION 0.103.0
