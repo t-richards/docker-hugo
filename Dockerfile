@@ -16,12 +16,12 @@ RUN set -eux; \
 		--repository=http://dl-cdn.alpinelinux.org/alpine/edge/community \
 		hugo \
 	; \
-# 1. Show versions
+# 3. Show versions
 	hugo version; \
 	java --version; \
 	npm version; \
 	mkdir -p /site; \
-# 2. List remaining installed packages
+# 4. List remaining installed packages
 	apk info -vv | sort
 
 WORKDIR /site
