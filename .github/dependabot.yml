@@ -5,9 +5,19 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    groups:
+      actions:
+        update-types:
+          - minor
+          - patch
 
   # Maintain dependencies for Docker image
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
       interval: "weekly"
+    groups:
+      docker:
+        update-types:
+          - minor
+          - patch
