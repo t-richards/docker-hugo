@@ -1,6 +1,6 @@
 # docker-hugo
 
-A docker image with [Hugo][hugo], NPM, and the JRE.
+A docker image with [Hugo][hugo], the static site generator, and NPM for asset compilation.
 
 ## Intended usage
 
