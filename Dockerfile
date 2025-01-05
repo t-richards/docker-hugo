@@ -1,5 +1,5 @@
 # Runtime image
-FROM alpine:3.20
+FROM alpine:3.21
 
 RUN set -eux; \
 # 0. Install system packages
