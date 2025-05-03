@@ -1,18 +1,16 @@
 # docker-hugo
 
-A docker image with [Hugo][hugo], the static site generator, and NPM for asset compilation.
+A multi-arch docker image with [Hugo][hugo], the static site generator, and NPM for asset compilation.
 
-## Intended usage
+## Available architectures
 
-```bash
-# Build site
-hugo --gc --minify
-```
+- `linux/amd64`
+- `linux/arm64`
 
-## Example run
+## Example usage
 
 ```bash
-docker run -v $(pwd):/site ghcr.io/t-richards/hugo hugo --gc public/
+docker run -v $(pwd):/site ghcr.io/t-richards/hugo hugo --gc --minify
 ```
 
 ## Building this image
