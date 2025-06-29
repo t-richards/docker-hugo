@@ -21,6 +21,3 @@ RUN set -eux; \
 	apk info -vv | sort
 
 WORKDIR /site
-ARG VCS_REF
-LABEL org.label-schema.vcs-ref="${VCS_REF}" \
-      org.label-schema.vcs-url="https://github.com/t-richards/docker-hugo"
