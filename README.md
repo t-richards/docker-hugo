@@ -1,6 +1,6 @@
 # docker-hugo
 
-A multi-arch docker image with [Hugo][hugo], the static site generator, and NPM for asset compilation.
+A multi-arch docker image with [Hugo][hugo], the static site generator, and [Bun][bun] for dependency installation.
 
 ## Available architectures
 
@@ -20,3 +20,4 @@ docker build -t ghcr.io/t-richards/hugo .
 ```
 
 [hugo]: https://github.com/gohugoio/hugo
+[bun]: https://bun.com

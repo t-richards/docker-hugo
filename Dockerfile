@@ -1,12 +1,16 @@
+# Build tools
+FROM oven/bun:1.3.6-alpine AS bun
+
 # Runtime image
 FROM alpine:3.23
+
+COPY --from=bun /usr/local/bin/bun /usr/local/bin/
 
 RUN set -eux; \
 # 0. Install system packages
 	apk add --no-cache --update \
 		ca-certificates \
 		git \
-		npm \
 	; \
 # 1. Install Hugo from the edge branch
 	apk add --no-cache --update \
@@ -15,7 +19,7 @@ RUN set -eux; \
 	; \
 # 3. Show versions
 	hugo version; \
-	npm version; \
+	bun --version; \
 	mkdir -p /site; \
 # 4. List remaining installed packages
 	apk info -vv | sort
