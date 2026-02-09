@@ -1,5 +1,5 @@
 # Build tools
-FROM oven/bun:1.3.6-alpine AS bun
+FROM oven/bun:1.3.9-alpine AS bun
 
 # Runtime image
 FROM alpine:3.23
