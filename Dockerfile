@@ -1,8 +1,8 @@
 # Build tools
-FROM oven/bun:1.3.6-alpine AS bun
+FROM oven/bun:1.3.14-alpine AS bun
 
 # Runtime image
-FROM alpine:3.23
+FROM alpine:3.24
 
 COPY --from=bun /usr/local/bin/bun /usr/local/bin/
 
